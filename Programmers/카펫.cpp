@@ -1,6 +1,6 @@
 #include <string>
 #include <vector>
-
+// 수정
 using namespace std;
 
 vector<int> solution(int brown, int yellow) {
