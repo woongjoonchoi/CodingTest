@@ -20,6 +20,7 @@ int solution(string s) {
         stringstream ss(x);
         while(ss>>k){    
             tmp.push_back(k);
+            
             cout<<ss<<endl;
         }   
         for(auto it = tmp.begin();it!=tmp.end();it++){
