@@ -24,3 +24,7 @@ for vs while:
 0518
 
 Floyd Warshall 세부사항으로만 기억하는버릇
+
+0528
+순서대로,(Not orderd)
+안되면, 정렬해도 되는가 ,정렬해서 순서대로(Orderd)
