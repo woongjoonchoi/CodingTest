@@ -4,6 +4,9 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+
+#  iterate , do not recover right subtree by using while
+#  use one state pointer value , lastvisitnode
 class Solution:
     def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         
@@ -15,18 +18,17 @@ class Solution:
         if root is None : return []
         while stack  or curr is not None:
             if curr is not None :
+                # print(curr)
                 stack.append(curr)
                 curr = curr.left
             else :
                 temp = stack[-1].right
-                if temp is None : 
-                    ans.append(stack[-1].val)
-                    temp = stack.pop()
-                    while stack and stack[-1].right == temp :
-                        temp = stack.pop()
-                        ans.append(temp.val)
+                if temp is not None and stack[-1].right != lastvisitnode: 
+                    # print(len(stack))
+                    curr= temp
                 else :
-                    curr = stack[-1].right
+                    lastvisitnode = stack.pop()
+                    ans.append(lastvisitnode.val)
         return ans
                     
                     
