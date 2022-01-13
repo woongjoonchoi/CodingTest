@@ -2,14 +2,15 @@ import itertools
 import sys
 import pprint
 n = int(sys.stdin.readline())
-matrix =[]
+# matrix =[]
 T = []
 O = []
 count_O = 3
 dx = [0,0,1,-1]
 dy = [1,-1,0,0]
-for i in range(n) :
-    matrix.append(sys.stdin.readline().rstrip().split())
+# for i in range(n) :
+#     matrix.append(sys.stdin.readline().rstrip().split())
+matrix = [sys.stdin.readline().split() for __ in range(n)]
 for i in range(len(matrix)):
     for j in range(len(matrix)):
         if matrix[i][j] == 'T' :
