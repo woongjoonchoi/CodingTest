@@ -1,26 +1,35 @@
-# O = [[ [3,5] , [1,1]]]
+import sys
 
-# # alloc = [ [5,5] , [1,1]]
-# alloc = [[1,2] , [1,1]]
-# count_O = 3
-# print(alloc[0][0])
-# if alloc is not None:
-#     flag = False
-#     for i in range(len(O)) :
-#         x,y = O[i]
-#         if max(alloc[0][0] , x[0] ) <= min(alloc[0][1] , x[1])  and \
-#             max(alloc[1][0] , y[0] ) <= min(alloc[1][1] , y[1]):
-#             flag = True
-#             O[i][0]  = [max(alloc[0][0] , x[0] ) , min(alloc[0][1] , x[1])]
-#             O[i][1]  = [max(alloc[1][0] , y[0] ) , min(alloc[1][1] , y[1])]
-#             break
-#         if not flag  :
-#             O.append(alloc)
-#             count_O-=1
-# print(O)
-# print(count_O)
+dx = [0,0,1,-1]
+dy = [1,-1,0,0]
+n = int(sys.stdin.readline())
+# matrix =[]
+T = []
+O = []
+count_O = 3
+dx = [0,0,1,-1]
+dy = [1,-1,0,0]
+# for i in range(n) :
+#     matrix.append(sys.stdin.readline().rstrip().split())
+matrix = [sys.stdin.readline().split() for __ in range(n)]
+for i in range(len(matrix)):
+    for j in range(len(matrix)):
+        if matrix[i][j] == 'T' :
+            T.append((i,j))
 
-
+for x,y in T :
+    for i in range(4) :
+        m = 1
+        while x +m* dx[i] >= 0 and x +m* dx[i]   <n  and y+m* dy[i] >=0 \
+            and y+m* dy[i] < n and matrix[x+m*dx[i]][y+dy[i] * m]  :
+            matrix[x+m*dx[i]][y+m*dy[i]] = 'C'
+            m+=1
+        
+            
+            
 
 a = [(1,2) , (3,4)]
-print(set(a))
+# print(set(a))
+for m in matrix :
+    print(m)
+print(matrix)
