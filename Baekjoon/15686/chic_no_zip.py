@@ -42,29 +42,23 @@ for k in combinations(index,M) :
     # print(k)
     city_chic_temp = 0 
     
-    # for i in range(len(chic_dist)) :
-    #     temp_val  = 0
-    #     for j in k :
-    #         if temp_val ==0 :
-    #             temp_val = chic_dist[i][j]
-    #         else :
-    #             temp_val = min(chic_dist[i][j] , temp_val)
-    #     city_chic_temp += temp_val
-    # for cc in [chic_dist[i] for i in k] :
+    for i in range(len(home)) :
+        min_dist = -1
+        for j in k :
+            if min_dist ==-1 or min_dist > chic_dist[j][i] :
+                min_dist = chic_dist[j][i]
+        city_chic_temp += min_dist
         
-    
-    
-    # temp_chic  = map(min , zip(*[chic_dist[i] for i in k]))
-    
-    for ccc in zip(*[chic_dist[i] for i in k]) :
-        city_chic_temp += min(ccc)
-    
-    # sum_city_chic = 0
-    # for k in temp_chic :
-    #     city_chic_temp += k
-    
-    
-    # city_chic_temp  = sum(map(min , [chic_dist[i] for i in k] ) ) 
+    # for j in k :
+    #     min_dist = -1
+    #     for i in range(len(home)) :
+    #         if min_dist ==-1 :
+    #         # if min_dist ==-1 or min_dist > chic_dist[j][i] :
+    #             min_dist = chic_dist[j][i]
+    #         else :
+    #             min_dist = min(min_dist , chic_dist[j][i])
+    #     city_chic_temp += min_dist
+        
     
     if city_chic == - 1 :
         city_chic  = city_chic_temp
