@@ -43,6 +43,8 @@ for k in combinations(chick,M) :
         continue
     city_chic = min(city_chic_temp, city_chic)
     
+    a= 4
+    
     
     
 print(city_chic)
