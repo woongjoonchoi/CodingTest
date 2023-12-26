@@ -28,6 +28,6 @@ Space Complexity :
 
 ### tail optimization 2
 
-Time Complexity :$$O(N!) $$
+Time Complexity : $$O(N!) $$
 
 Space Complexity :
