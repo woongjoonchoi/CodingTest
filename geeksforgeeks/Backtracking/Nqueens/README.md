@@ -6,28 +6,23 @@
 ## Solution Link
 
 [Link](https://www.geeksforgeeks.org/n-queen-problem-backtracking-3/)
-## Implementation
+## Implementation  
+ 
 
+|Method|Time Complexity|Space Complexity |
+|--------------------------------|---------------------------------------------|-----------------------------------|
+|No-tail Optimization|$$O(N^{n})$$||
+|no-tail optimization 2|$$O(N! * N^{2})$$||
+|tail optimization |$$O(N!) $$||
+|tail optimization 2|$$O(N!) $$||
 ### No-tail Optimization
 
-Time Complexity : $$O(N^{n})$$
-
-Space Complexity : 
 
 ### no-tail optimization 2
-Time Complexity : $$O(N! * N^{2})$$
-
-Space Complexity : 
 
 ### tail optimization 
 
-Time Complexity : $$O(N!) $$
-
-Space Complexity :
 
 
 ### tail optimization 2
 
-Time Complexity : $$O(N!) $$
-
-Space Complexity :
