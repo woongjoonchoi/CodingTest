@@ -58,7 +58,7 @@ class Solution:
 start = time.time()
 ob =Solution()
 
-ans = ob.nQueen(9)
+ans = ob.nQueen(10)
 end= time.time()
 print(len(ans))
 print(ans)

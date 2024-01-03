@@ -36,5 +36,5 @@ ob =Solution()
 ans = ob.nQueen(10)
 end= time.time()
 
-print(len(ans))
+# print(len(ans))
 print("time : {}".format(end-start))

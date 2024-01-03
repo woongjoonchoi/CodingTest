@@ -51,8 +51,8 @@ class Solution:
 start = time.time()
 ob =Solution()
 
-ans = ob.nQueen(8)
+ans = ob.nQueen(10)
 end= time.time()
-print(len(ans))
-print(ans)
+# print(len(ans))
+# print(ans)
 print("time : {}".format(end-start))
