@@ -18,6 +18,8 @@ class Solution:
                 return
             for i in range(0,n) :
                 # 
+                
+                # 이부분이 성능차이가 나는 부분이다.
                 if board[i][steps ] == 1 : continue  
                 diff = []
                 for k in range(steps+1,n) :
