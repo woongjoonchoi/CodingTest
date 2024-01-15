@@ -1,7 +1,9 @@
 # Stack
 
 [TotalllInk](https://www.geeksforgeeks.org/stack-data-structure/)
+## SpecialStack CodingAbility INcrease
 
+[240115](https://github.com/woongjoonchoi/CodingAbilityIncreaseChallange/tree/main/2024_01/0115)
 ## SpecialStack(pop min) Problem LInk
 ### Time : O(1) Space : O(n)
 
