@@ -38,7 +38,7 @@ class Solution:
 start = time.time()
 
 ob = Solution()
-kk = ob.nQueen(9)
+kk = ob.nQueen(10)
 
 end = time.time()
 print(len(kk))
