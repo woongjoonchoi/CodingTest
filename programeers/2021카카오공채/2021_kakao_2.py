@@ -1,0 +1,189 @@
+board_size = 4
+
+def indchk(x,y) :
+    return x>=0 and x< board_size and y>=0 and y<board_size
+def state_check(state,r,c) :
+    for i in range(1,7) :
+        for t in state[i] :
+            if t == (r,c) :
+                return i
+    return 0
+
+def board_making(state) :
+    new_board= [ [0 for _ in range(board_size)] for _ in range(4)]
+    for i in range(1,7) :
+        for r,c in state[i] :
+            new_board[r][c] = i
+    return new_board
+def adj(u,board):
+
+    state = dict(u)
+    adj_li = []
+    r,c = state["pos"]
+    temp_set =set()
+    board_color = state_check(state,r,c)  
+    # if u == 	(('pos', (3, 2)), ('flip', ((2, 1, 0),)), (1, ((0, 0), (3, 2))), (2, ((2, 3),)), (3, ()), (4, ()), (5, ()), (6, ())) :
+    #     print('hi')
+    if board_color !=0 : ## 틀린부분
+        li = []
+        for   p in list(state[board_color]) :
+            if p != (r,c) : 
+                li.append(p)
+                break
+        if  not state["flip"] :
+            state["flip"] = tuple([(board_color ,r,c)])
+            state[board_color] =tuple(li)
+            # board_color = 0
+        else :
+            card_val , f_r,f_c = state["flip"][0]  
+            if card_val == board_color :
+                
+                state[board_color] = tuple(li)
+                # board_color = 0
+            else : 
+                temp_list = list(state[card_val])
+                temp_list.append((f_r,f_c))
+                temp_list.sort()
+                state[card_val] = tuple(temp_list)
+                board[f_r][f_c] = card_val
+            state["flip"] = tuple([])
+
+        temp_set.add(tuple(state.items()) )
+    dx = [0,0,1,-1]
+    dy = [1,-1,0,0]
+    
+    for deltax ,deltay in zip(dx,dy) :
+        new_state = dict(u)
+        new_r,new_c = r+deltax,c+deltay
+        if not indchk(new_r,new_c) :    ## 틀린부분 adj
+            new_r ,new_c= r , c
+
+        new_state["pos"] =(new_r,new_c)
+        temp_set.add(tuple(new_state.items()))
+        temp_x,temp_y = r,c
+        new_state=dict(u)
+        temp_board =  board_making(new_state)#틀린부분
+        while indchk(temp_x+deltax,temp_y+deltay) :
+            temp_x +=deltax
+            temp_y += deltay
+            if temp_board[temp_x][temp_y] != 0 :
+                break
+        new_state["pos"] = (temp_x,temp_y)
+        temp_set.add(tuple(new_state.items()))
+
+
+    adj_li = list(temp_set)
+    return adj_li
+
+
+    
+def print_path(parent,v):
+    node = v
+    
+    while node is not None :
+        print(node)
+        node = parent[node]
+## 0: pos, 1~6 : card number
+def bfs(start,board):
+    parent = {start:None}
+    level = [[start]]
+    answer_found = False
+    count =0
+    while level :
+        # if count == 4: break
+        level.append([])
+        if len(level) == 11 :
+            print('hi')
+        for u in level[-2] :
+            for v in adj(u,board) :
+                # if u == 	(('pos', (3, 0)), ('flip', ()), (1, ((0, 0), (3, 2))), (2, ()), (3, ()), (4, ()), (5, ()), (6, ())) :
+                #     print(v)
+                if v not in parent :
+                    level[-1].append(v)
+                    parent[v] = u
+                    
+                    # if u == 	(('pos', (3, 0)), ('flip', ()), (1, ((0, 0), (3, 2))), (2, ()), (3, ()), (4, ()), (5, ()), (6, ())) :
+                        # print(v)
+                        # print('print path')
+                        # print_path(parent,v)
+                        # print('---------------------')
+                    # print(f'parent : {parent[v]}')
+        # if len(level) ==17:
+        #     break
+        for u in level[-1] :
+            # if u== (('pos', (1, 2)), ('flip', ()), (1, ()), (2, ()), (3, ()), (4, ()), (5, ()), (6, ())) :
+            #     print('hi')
+            temp_dict = dict(u)
+            for i in range(1,7) :
+                if   temp_dict[i]: break
+            else :
+                break
+            continue
+        else :
+            continue
+            # count+=1
+        break
+        
+    return level
+                
+
+def solution(board, r, c):
+    answer = 0
+    
+
+    start = {}
+    start["pos"] = (r,c)
+    start["flip"] =()
+    for i in range(1,7) :
+        start[i] = []
+    for x in range(len(board )):
+        for y in range(len(board)) :
+            if board[x][y] !=0 :
+                start[board[x][y]].append((x,y))
+    for i in range(1,7) :
+        start[i] = tuple(start[i])
+           
+    # print(start)
+    # c = set()
+    # c.add(tuple(start.items()))
+    # print(c)
+    # print(tuple([(1,2,0)]))
+    # print(tuple([]))
+    # for i in adj(start,board) :
+    #     print(i)
+    lev = bfs(tuple(start.items()),board)
+    # for i in board :
+    #     print(i)
+    # print(lev)
+    # print(len(lev[-1]))
+    # d =(2, ((1, 0)))
+    # k,b,s = d
+    # print(k)
+    # print(len(lev))
+    # for l in lev[-1] :
+    #     print(l)
+#     for l in lev[-1] :
+#     #     if l[0][1] == (2,0) :  
+#         # if l[0][1] == (2,3) :  #level5
+#         # if l[0][1] == (3,0)  and not l[1][1] and not l[4][1]: # level 9
+#         if l[0][1] == (0,0) and not l[1][1] : #level 14
+#         # if l[0][1] == (3,2) and l[1][1] and not l[4][1] : #level 11
+# #         # if l[0][1] == (3,2) and not l[1][1]  and not l[4][1]: 
+        
+#             print(l)
+
+    # for l in lev[-1] :
+    #     # if l[0][1] == (0,0) :  # level 2 test
+    #     # if l[0][1] ==(3,3) : #level  5 test
+    #     # if l[0][1] == (0,3) : #level 7 test
+    #     # if l[0][1] ==  (3,0) :  # level 10 test
+    #     # if l[0][1] == (2,1) :  # level 13 test
+    #     if l[0][1] == (1,2) :
+    #         print(l)
+    answer = len(lev) -1
+    return answer
+# print((('pos', (3, 0)), ('flip', ()), (1, ((0, 0), (3, 2))), (2, ()), (3, ()), (4, ()), (5, ()), (6, ())) == 
+#        (('pos', (3, 0)), ('flip', ()), (1, ((0, 0), (3, 2))), (2, ()), (3, ()), (4, ()), (5, ()), (6, ()))  )
+
+print(solution([[3, 0, 0, 2], [0, 0, 1, 0], [0, 1, 0, 0], [2, 0, 0, 3]], 0, 1))
+print(solution([[1, 0, 0, 3], [2, 0, 0, 0], [0, 0, 0, 2], [3, 0, 1, 0]],1,0))
