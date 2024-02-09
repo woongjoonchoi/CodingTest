@@ -86,7 +86,7 @@ def bfs(start,board):
         for u in level[-1] :
             temp_dict = dict(u)
             for i in range(1,7) :
-                if   temp_dict[i]: break
+                if   temp_dict[i]: break  # 틀린부분
             else :
                 break
             continue
